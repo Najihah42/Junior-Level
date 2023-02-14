@@ -4,8 +4,60 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
+	<!-- <style type="text/css">
+		.table{
+
+		}
+	</style> -->
+
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 </head>
 <body>
+	<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+	<table class="table" id="api"></table>
 
+	<script src="Junior-Level.js"></script>
 </body>
 </html>
+
+<script type="text/javascript">
+	function myFunction() {
+	  // Declare variables
+	  var input, filter, table, tr, td_1, td_2 , i, txtValue_1, txtValue_2;
+	  input = document.getElementById("myInput");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("api");
+	  tr = table.getElementsByTagName("tr");
+
+	  // Loop through all table rows, and hide those who don't match the search query
+	  for (i = 0; i < tr.length; i++) {
+	    td_1= tr[i].getElementsByTagName("td")[0];
+	    td_2= tr[i].getElementsByTagName("td")[3];
+	    if (td_1 || td_2) {
+	      txtValue_1 = td_1.textContent || td_1.innerText;
+	      txtValue_2 = td_2.textContent || td_2.innerText;
+	      if (txtValue_1.toUpperCase().indexOf(filter) > -1 || txtValue_2.toUpperCase().indexOf(filter) > -1) {
+	        tr[i].style.display = "";
+	      } else {
+	        tr[i].style.display = "none";
+	      }
+	    }
+	  }
+	}
+</script>
